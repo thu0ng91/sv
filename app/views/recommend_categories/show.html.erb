@@ -1,0 +1,30 @@
+<h1>Listing category novels</h1>
+
+類別名: <%= @category.name %> 
+<br>
+<%= link_to '新增小說', new_recommend_category_novel_ship_path(recommend_category: @category.id) %> <br>
+<br>
+<table>
+  <tr>
+    <th>推薦書名</th>
+    <th>類別名</th>
+    <th>書id</th>
+  </tr>
+
+<% @category.recommend_category_novel_ships.each do |ship| %>
+  <tr>
+    <% if ship.novel  %>
+      <td><%= ship.novel.name %></td>
+      <td><%= (ship.novel.category)? ship.novel.category.name : "沒有類別" %></td>
+      <td><%= ship.novel.id %></td>
+      <td><%= link_to 'Destroy', ship, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%else %>
+      <%= ship.id %>
+      <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '新增小說', new_recommend_category_novel_ship_path(recommend_category: @category.id) %> <br>

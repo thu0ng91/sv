@@ -1,0 +1,22 @@
+<%= form_for Article.new do |f|%>
+  <%= text_field :page, :page,:value => params[:page],:type => "hidden"%>
+  <%= f.text_field :novel_id, :value => @novel_id,:type => "hidden"%>
+  
+  <%= f.label :article_all_text %>:
+  <%= f.text_area :article_all_text ,:cols => "400"%><br />
+
+  <%= f.label :link %>:
+  <%= f.text_field :link %><br />
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %> ex: 第一章 如你所願 <br />
+
+  <%= f.label :subject %>:
+  <%= f.text_field :subject %> ex: 噩盡島1 <br />
+
+  <%= f.label :num %>:
+  <%= f.text_field :num %> ex: 123 <br />
+
+  <%= f.submit %>
+
+<% end %>

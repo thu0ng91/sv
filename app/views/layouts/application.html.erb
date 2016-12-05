@@ -8,6 +8,15 @@
 </head>
 <body>
 
+<% if logged_in? %>
+    <%= link_to '登出', logout_path %>
+    <%= link_to '小說列表', novels_path %>
+    <%= link_to '推薦類別總覽', recommend_categories_path %>
+    <%= link_to '本周排行', this_week_hot_ships_path %>
+    <%= link_to '本月排行', this_month_hot_ships_path %>
+    <%= link_to '總人氣排行', hot_ships_path %>
+    <%= link_to '新增小說', new_novel_path %> 
+<% end %>
 
 <br>
 

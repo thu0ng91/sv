@@ -1,0 +1,14 @@
+<h1>新增類別</h1>
+
+<%= form_for(@category) do |f| %>
+
+    <%= f.label "類別名稱" %>:
+    <%= f.text_field :name %>
+
+    <%= f.submit "新增"%>
+<% end %>
+
+<br>
+<br>
+<br>
+<%= link_to '回到類別', recommend_categories_path %>

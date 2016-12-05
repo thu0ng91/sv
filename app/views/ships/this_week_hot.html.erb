@@ -1,0 +1,32 @@
+<h1>Listing novels</h1>
+
+<br>
+<br>
+<table>
+  <tr>
+    <th>新增的順序</th>
+    <th>推薦書名</th>
+    <th>類別名</th>
+    <th>書id</th>
+  </tr>
+
+<%= link_to '新增小說', new_ship_path(ship_type: @ships[0].class.name) %> <br>
+
+<% @ships.each do |ship| %>
+  <tr>
+    <% if ship.novel  %>
+      <td><%= ship.id %></td>
+      <td><%= ship.novel.name %></td>
+      <td><%= (ship.novel.category)? ship.novel.category.name : "沒有類別" %></td>
+      <td><%= ship.novel.id %></td>
+      <td><%= link_to 'Destroy', ship_path(ship,ship_type: ship.class.name), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <%else %>
+      <%= ship.id %>
+      <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to '新增小說', new_ship_path(ship_type: @ships[0].class.name) %> <br>

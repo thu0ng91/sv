@@ -1,0 +1,9 @@
+小說名：　<%= @novel.name %> </br> 
+作者:　　<%= @novel.author %> </br> 
+<%= form_for "", :url => update_novel_novels_path, :method => :put do |f|%>
+
+  <%= f.text_field "novel_id",:value => @novel.id,:type => "hidden" %><br />
+  <%= f.label :parse_url %>:
+  <%= f.text_field "url" %>
+<%= f.submit "crawl" %>
+<% end %>

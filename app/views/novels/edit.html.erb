@@ -1,0 +1,58 @@
+<ul>可以用的網站：
+<li><%= link_to "http://www.bestory.com/","http://www.bestory.com/"%></li>
+</ul>
+
+<h1>修改novel :</h1>
+
+<br>##############################換novel link ########################################<br>
+請先把不要的articles set invisible<br>
+<%= form_tag controller: "novels", action: "change",id: @novel, method: "post" do %>  
+    新 novel link   
+    <%= text_field :link,:new_link %><br>  
+    從這篇 link 開始抓取
+    <%= text_field :link,:from_link%><br>
+    原本最後一篇article的num
+    <%= text_field :link,:num%><br>
+    <%= submit_tag 'Start' %>  
+<% end %>  
+
+<br>#########################################################################<br>
+
+<%= form_for(@novel) do |f| %>
+
+  <div class="actions">
+    <%= f.label :name %>:
+    <%= f.text_field :name %> <br>
+    <%= f.label :author %>:
+    <%= f.text_field :author %><br>
+    <%= f.label :description %>:
+    <%= f.text_area :description ,:cols => "400"%><br>
+    <%= f.label :pic %>:
+    <%= f.text_field :pic %><br>
+    <%= f.label "category id" %>:
+    <%= f.text_field :category_id %> 10(名著古典),11(科普其它),14(玄幻魔法),15(武俠修真),16(都市言情),17(歷史軍事),18(游戲競技),19(科幻小說),20(恐怖靈異),21(美文散文),22(同人小說),23(輕小說),24(穿越重生) <br>
+    <%= f.label :article_num %>:
+    <%= f.text_field :article_num %> 給一個大概的集數<br>
+    <%= f.label :last_update %>:
+    <%= f.text_field :last_update %> ex: 12-06-01 <br>
+    <%= f.label :is_serializing %>:
+    <%= f.text_field :is_serializing %> 0(全本)1(連載中)<br>
+    <%= f.label :is_category_recommend %>:
+    <%= f.text_field :is_category_recommend %><br>
+    <%= f.label :is_category_hot %>:
+    <%= f.text_field :is_category_hot %><br>
+    <%= f.label :is_category_this_week_hot %>:
+    <%= f.text_field :is_category_this_week_hot %><br>
+    <%= f.label :is_classic %>:
+    <%= f.text_field :is_classic %> (經典小說)<br>
+    <%= f.label :is_classic_action %>:
+    <%= f.text_field :is_classic_action %>(經典武俠)<br>
+    <%= f.label :is_show %>:
+    <%= f.text_field :is_show %><br>
+    Novel Link: <%= @novel.link %><br>
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<%= link_to 'Show', novel_path(@novel, page: 1) %> |
+<%= link_to 'Back', novels_path %>

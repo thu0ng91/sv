@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+小說名：　<%= @novel.name %> </br> 
+作者:　　<%= @novel.author %> </br> 
+show:   <%= @novel.is_show %> </br>
+<%= link_to 'Edit', edit_novel_path(@novel) %> |
+<%= link_to 'Back', novels_path %>
+
+
+<br>#########################################################################<br>
+
+
+<% if @articles %>
+<table>
+  <tr>
+    <th>分類</th>
+    <th>篇名</th>
+    <th><%= sortable "num","篇數" %></th>
+    <th><%= sortable "is_show","show"%></th>
+    <th></th>
+  </tr>
+
+<%= will_paginate @articles %>
+
+<% @articles.each do |article| %>
+  <tr>
+    <td> <%= article.subject %> &nbsp&nbsp</td>
+    <td> <%= article.title %></td>
+    <td> <%= article.num %></td>
+    <td> <%= article.is_show %></td>
+    <td> <%= truncate(article.try(:article_all_text)) %></td>
+    <td><%= link_to 'Edit', edit_article_path(article) %></td>
+    <td><%= link_to 'Show', article_path(article) %></td>
+    <td><%= link_to 'ReCrawl', re_crawl_articles_path({:article_id => article.id}), data: { confirm: 'Are you sure?' } %></td>
+    <td>
+    <%= form_for "", :url => crawl_text_onther_site_articles_path({:article_id => article.id}), data: { confirm: 'Are you sure?' }, :method => :put do |f|%>
+
+    <%= f.label :parse_url %>:
+    <%= f.text_field "url" %>
+    <%= f.submit "crawl" %>
+    <% end %>
+    </td>
+    
+    <td>
+    <%= form_for "", :url => reset_num_articles_path({:article_id => article.id,:novel_id => article.novel_id,:page => params[:page]}), :method => :put do |f|%>
+    <%= f.text_field "num" %> ex: 22
+    <%= f.submit "set" %>
+    
+    <% end %>
+    </td>
+
+
+<% end %>
+</table>
+<% end %>

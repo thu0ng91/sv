@@ -1,0 +1,14 @@
+<h1>新增小說</h1>
+
+<%= form_for(@ship) do |f| %>
+    <%= f.text_field :recommend_category_id, value: params[:recommend_category],:type => "hidden" %><br>
+    <%= f.label "小說id" %>:
+    <%= f.text_field :novel_id %>
+
+    <%= f.submit "新增"%>
+<% end %>
+
+<br>
+<br>
+<br>
+<%= link_to '回到類別', recommend_category_path(id: params[:recommend_category]) %>

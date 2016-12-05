@@ -1,0 +1,33 @@
+<h1>Listing novels</h1>
+<%= form_for "", :url => search_novels_path, :method => :put do |f|%>
+<%= f.text_field "search" %><br />
+<% end %>
+
+<%= link_to "貼網址抓取小說", auto_crawl_info_novels_path %>
+
+
+<%= will_paginate @novels %>
+<table>
+  <tr>
+    <th>小說id</th>
+    <th>小說類別</th>
+    <th>小說名</th>
+    <th>作者名</th>
+    <th>show</th>
+  </tr>
+
+<% @novels.each do |novel| %>
+  <tr>
+    <td><%= novel.id %></td>
+    <td><%= (novel.category)? novel.category.name : "沒有類別" %></td>
+    <td><%= novel.name %></td>
+    <td><%= novel.author %></td>
+    <td><%= novel.is_show %></td>
+    <td><%= link_to 'Show', novel_path(novel, page: 1) %></td>
+    <td><%= link_to 'Edit', edit_novel_path(novel) %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

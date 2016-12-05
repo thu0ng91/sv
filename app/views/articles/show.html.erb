@@ -1,0 +1,26 @@
+
+<table>
+  <tr>
+    <th>分類</th>
+    <th>篇名</th>
+    <th>篇數</th>
+    <th>文章內容</th>
+    <th>文章link</th>
+    <th>show</th>
+    <th>date</th>
+  </tr>
+
+  <tr>
+    <td> <%= @article.subject %> &nbsp&nbsp</td>
+    <td> <%= @article.title %></td>
+    <td> <%= @article.num %></td>
+    <td> <%= @article.article_all_text %></td>
+    <td> <%= @article.link %></td>
+    <td> <%= @article.is_show %></td>
+    <td> <%= @article.updated_at %></td>
+  </tr>
+</table>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Destroy', @article, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', novel_path(@article.novel_id) %>

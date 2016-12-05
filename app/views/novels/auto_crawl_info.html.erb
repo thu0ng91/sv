@@ -1,0 +1,42 @@
+<br>
+<%= form_for "", :url => auto_crawl_novels_path, :method => :put do |f|%>
+  
+  <%= f.label :novel_link %>:
+  <%= f.text_field "novel_link" %><br>
+
+  <%= f.label :category_id %>:
+  <%= f.text_field :category_id %><br>
+   10(名著古典),11(科普其它),14(玄幻魔法),15(武俠修真),16(都市言情),17(歷史軍事),18(游戲競技),19(科幻小說),20(恐怖靈異),21(美文散文),22(同人小說),23(輕小說),24(穿越重生)<br><br>
+
+  <%= f.submit %>
+
+<% end %>
+
+<table>
+  <tr>
+    <th>網站</th>
+    <th></th>
+  </tr>
+
+  <tr>
+    <th>http://book.sfacg.com/</th>
+  </tr>
+  <tr>
+    <th>http://xs.dmzj.com/</th>
+  </tr>
+  <tr>
+    <th>http://www.uukanshu.com/</th>
+  </tr>
+  <tr>
+    <th>http://www.piaotian.net/</th>
+  </tr>
+  <tr>
+    <th>http://www.69shu.com/</th>
+  </tr>
+  <tr>
+    <th>http://www.33yq.com/</th>
+  </tr>
+  <tr>
+    <th>http://www.danmeila.com/</th>
+  </tr>
+</table>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>EnvironmentVariables</key>
+    <dict>
+      <key>PATH</key>
+      <string>/Users/steven/.rvm/gems/ruby-2.1.1/bin:/Users/steven/.rvm/gems/ruby-2.1.1@global/bin:/Users/steven/.rvm/rubies/ruby-2.1.1/bin:/Users/steven/.rvm/bin:/usr/local/heroku/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+    </dict>
+  <key>Label</key>
+  <string>projects.novel2</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/steven/.rvm/bin/launchctl_rake</string>
+    <string>crawl:crawl_articles_and_update_novel</string>
+  </array>
+  <key>WorkingDirectory</key>
+  <string>/Users/steven/projects/novel_reader_server</string>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Minute</key>
+    <integer>30</integer>
+    <key>Hour</key>
+    <integer>2</integer>
+  </dict>
+  <key>StandardErrorPath</key>
+  <string>/tmp/test.stderr</string>
+  <key>StandardOutPath</key>
+  <string>/tmp/test.stdout</string> 
+</dict>
+</plist>

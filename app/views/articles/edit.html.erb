@@ -1,0 +1,70 @@
+<h1>重新 Crawl Article Text</h1>
+
+<%= form_for "", :url => crawl_text_onther_site_articles_path({:article_id => @article.id}), data: { confirm: 'Are you sure?' }, :method => :put do |f|%>
+
+  <%= f.label :parse_url %>:
+  <%= f.text_field "url" %>
+<%= f.submit "crawl" %>
+<% end %>
+
+<br>#########################################################################<br>
+
+<h1> Reset Num Article</h1>
+
+<%= form_for "", :url => reset_num_articles_path({:article_id => @article.id,:novel_id => @article.novel_id}), :method => :put do |f|%>
+
+<%= f.text_field "num" %> ex: 22
+<%= f.submit "set" %>
+<% end %>
+
+
+#########################################################################<br>
+<h1> Edit Article</h1>
+
+<%= form_for @article do |f|%>
+
+  <%= f.label :title %>:
+  <%= f.text_field :title %> ex: 第一章 如你所願 <br />
+
+  <%= f.label :subject %>:
+  <%= f.text_field :subject %> ex: 噩盡島1 <br />
+
+  <%= f.label :num %>
+  <%= f.text_field :num %> ex: 1 <br />
+
+  <%= f.label "show" %>
+  <%= f.text_field :is_show %> ex: (true =1, false = 0) <br />
+  
+  <%= f.label :article_all_text %>:
+  <%= f.text_area :article_all_text , :cols => "400"%><br />
+
+  <%= f.label :link %>:
+  <%= f.text_field :link %><br />
+
+  <%= f.submit %>
+
+<% end %>
+
+#########################################################################<br>
+<table>
+  <tr>
+    <th>網站</th>
+    <th>Google search(click to google search)</th>
+    <th>能不能爬網站的文章列表</th>
+    <th>推薦使用的網站</th>
+    <th></th>
+  </tr>
+
+<% @websites.each do |website_name, info| %>
+  <tr>
+    <% url = info['pattern'][1..info['pattern'].length-4] %>
+    <th><%= website_name %></th>
+    <th><%= link_to url,"https://www.google.com/search?q=#{@article.title}+site%3A#{url}",:target => "_blank" %></th>
+    <th><%= info['crawl_site_articles'] %></th>
+    <th><%= info['recommend'] %></th> 
+  </tr>
+<% end %>
+
+</table>
+
+

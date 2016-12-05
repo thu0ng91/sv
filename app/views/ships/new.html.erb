@@ -1,0 +1,14 @@
+<h1>新增小說</h1>
+
+<%= form_for "", url: ships_path do |f| %>
+    <%= f.text_field :ship_type, value: params[:ship_type],:type => "hidden" %><br>
+    <%= f.label "小說id" %>:
+    <%= f.text_field :novel_id %>
+
+    <%= f.submit "新增"%>
+<% end %>
+
+<br>
+<br>
+<br>
+
