@@ -8,13 +8,13 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
     text = params[:article][:article_all_text]
-    params[:article].delete(:article_all_text)
-    if @article.update_attributes(params[:article])
+    article_params.delete(:article_all_text)
+    if @article.update_attributes(article_params)
       if @article.is_show == false
         novel = Novel.find(@article.novel_id)
         novel.update_num
       end
-      article_text = ArticleText.find_or_initialize_by_article_id(params[:id])
+      article_text = ArticleText.find_or_initialize_by(article_id: params[:id])
       article_text.text = text
       article_text.save
       render :action => 'show'
@@ -44,14 +44,13 @@ class ArticlesController < ApplicationController
   def create
     text = params[:article][:article_all_text]
     num = params[:article][:num]
-    params[:article].delete(:article_all_text)
-    params[:article].delete(:num)
+    article_params.delete(:article_all_text)
+    article_params.delete(:num)
 
-    article = Article.new(params[:article])
-    novel = Novel.select("id,num").find(article.novel_id)
+    article = Article.new(article_params)
+    novel = Novel.select("id,num,category_id").find(article.novel_id)
     article.num = novel.num + 1
     novel.num = novel.num + 1
-
     if article.save && novel.save
       reset_articles_num(novel.id, num, article.id) if num
       page_html = Nokogiri::HTML(text)
@@ -115,5 +114,9 @@ class ArticlesController < ApplicationController
       article = Article.select("id,num").find(article_id)
       article.update_column(:num,num)
     end
+  end
+
+  def article_params
+    params.require(:article).permit(:novel_id, :text, :link, :title, :subject, :num, :is_show)
   end
 end

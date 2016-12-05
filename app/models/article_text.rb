@@ -3,7 +3,7 @@ class ArticleText < ActiveRecord::Base
   belongs_to :article
 
   def self.update_or_create opts
-    at = ArticleText.find_or_initialize_by_article_id(opts[:article_id])
+    at = ArticleText.find_or_initialize_by(article_id: opts[:article_id])
     at.text = opts[:text]
     at.save
 

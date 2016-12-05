@@ -47,7 +47,7 @@ class NovelsController < ApplicationController
   end
 
   def create
-    @novel = Novel.new(params[:novel])
+    @novel = Novel.new(novel_params)
     @websites = CrawlerAdapter.adapter_map
     if @novel.save
       redirect_to :action => 'show', :id => @novel.id, :page => 1
@@ -58,7 +58,7 @@ class NovelsController < ApplicationController
 
   def update
     @novel = Novel.find(params[:id])
-    if @novel.update_attributes(params[:novel])
+    if @novel.update_attributes(novel_params)
       redirect_to :action => 'show', :page => 1
     else
       render :action => "edit" 
@@ -73,7 +73,7 @@ class NovelsController < ApplicationController
   end
 
   def set_artlcles_to_invisiable
-    Article.update_all("is_show = false","novel_id = #{params[:id]} and num >= #{params[:num_from]} and num <= #{params[:num_to]}")
+    Article.where("novel_id = #{params[:id]} and num >= #{params[:num_from]} and num <= #{params[:num_to]}").update_all(is_show: false)
     novel = Novel.find(params[:id])
     novel.update_num
     redirect_to novel_path(params[:id],page: params[:page])
@@ -121,6 +121,10 @@ class NovelsController < ApplicationController
   
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
+  def novel_params
+    params.require(:novel).permit(:name, :author, :description, :pic, :category_id, :article_num, :last_update, :is_serializing, :is_category_recommend, :is_category_hot, :is_category_this_week_hot, :is_classic, :is_classic_action, :is_show, :link)
   end
 
 end
