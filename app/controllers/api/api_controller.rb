@@ -1,6 +1,5 @@
 # encoding: UTF-8
 class Api::ApiController  < ActionController::Base
-  respond_to :json
   before_filter :check_format_json
   
   def check_format_json
