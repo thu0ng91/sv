@@ -1,3 +1,5 @@
+require 'capybara'
+require 'capybara/dsl'
 # encoding: utf-8
 class Crawler::BookRijigu
   include Crawler
