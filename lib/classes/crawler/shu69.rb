@@ -65,15 +65,14 @@ class Crawler::Shu69
         article.novel_id = novel_id
         article.link = "http://www.69shu.com" + node[:href]
         article.title = ZhConv.convert("zh-tw",node.text.strip,false)
-        novel = Novel.select("id,num,name,category_id").find(novel_id)
+        novel = Novel.select("id,num,name").find(novel_id)
         article.subject = novel.name
         if novel_id == 23135
           article.num = novel.num + 1 + 7688662
         else
           article.num = novel.num + 1
         end
-        novel.num = novel.num + 1
-        novel.save
+        novel.update_column(:num,novel.num + 1)
         # puts node.text
         article.save
       end

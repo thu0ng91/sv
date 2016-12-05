@@ -31,8 +31,7 @@ class Crawler::Snwx
       novel = Novel.select("id,num,name").find(novel_id)
       article.subject = novel.name
       article.num = novel.num + 1
-      novel.num = novel.num + 1
-      novel.save
+      novel.update_column(:num,novel.num + 1)
       article.save
       end
       ArticleWorker.perform_async(article.id)          

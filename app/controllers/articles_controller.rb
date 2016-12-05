@@ -48,10 +48,9 @@ class ArticlesController < ApplicationController
     article_params.delete(:num)
 
     article = Article.new(article_params)
-    novel = Novel.select("id,num,category_id").find(article.novel_id)
+    novel = Novel.select("id,num").find(article.novel_id)
     article.num = novel.num + 1
-    novel.num = novel.num + 1
-    if article.save && novel.save
+    if article.save && novel.update_column(:num,novel.num + 1)
       reset_articles_num(novel.id, num, article.id) if num
       page_html = Nokogiri::HTML(text)
       page_html.css("font,span").remove

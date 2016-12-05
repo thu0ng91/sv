@@ -24,8 +24,7 @@ class Crawler::Daomubiji2
           novel = Novel.select("id,num,name").find(novel_id)
           article.subject = subject
           article.num = novel.num + 1
-          novel.num = novel.num + 1
-          novel.save
+          novel.update_column(:num,novel.num + 1)
           # puts node.text
           article.save
         end

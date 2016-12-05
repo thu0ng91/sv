@@ -26,8 +26,7 @@ class Crawler::Luoqiu
           article.title = ZhConv.convert("zh-tw",a_node.text.strip,false) 
           article.subject = subject
           article.num = novel.num + 1
-          novel.num = novel.num + 1
-          novel.save
+          novel.update_column(:num,novel.num + 1)
           # puts node.text
           article.save
         end

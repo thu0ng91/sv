@@ -39,8 +39,7 @@ class Crawler::Ck101
           article.title = "#{page}"
           article.subject = novel.name
           article.num = novel.num + 1
-          novel.num = novel.num + 1
-          novel.save
+          novel.update_column(:num,novel.num + 1)
           # puts node.text
           article.save
         end
@@ -63,8 +62,7 @@ class Crawler::Ck101
           article.title = "#{page}"
           article.subject = novel.name
           article.num = novel.num + 1
-          novel.num = novel.num + 1
-          novel.save
+          novel.update_column(:num,novel.num + 1)
           # puts node.text
           article.save
         end

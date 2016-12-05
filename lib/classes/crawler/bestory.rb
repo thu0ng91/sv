@@ -136,8 +136,7 @@ class Crawler::Bestory
           article.subject = node.parent.parent.parent.parent.parent.previous.previous.previous.text.strip
           novel = Novel.select("id,num").find(novel_id)
           article.num = novel.num + 1
-          novel.num = novel.num + 1
-          novel.save
+          novel.update_column(:num,novel.num + 1)
           # puts node.text
           article.save
         end

@@ -23,8 +23,7 @@ class Crawler::Mgyqw
         article.subject = novel.name
         /(\d*)\.html/ =~ node[:href]
         article.num = $1 + novel.num
-        novel.num = novel.num + 1
-        novel.save
+        novel.update_column(:num,novel.num + 1)
         # puts node.text
         article.save
       end

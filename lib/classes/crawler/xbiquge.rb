@@ -21,8 +21,7 @@ class Crawler::Xbiquge
       novel = Novel.select("id,num,name").find(novel_id)
       article.subject = Novel.name
       article.num = novel.num + 1
-      novel.num = novel.num + 1
-      novel.save
+      novel.update_column(:num,novel.num + 1)
       article.save
       end
       ArticleWorker.perform_async(article.id)          

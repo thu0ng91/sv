@@ -24,8 +24,7 @@ class Crawler::Ixs
         article.title = ZhConv.convert("zh-tw",node.text.strip,false)
         article.subject = subject
         article.num = novel.num + 1
-        novel.num = novel.num + 1
-        novel.save
+        novel.update_column(:num,novel.num + 1)
         article.save
       end
       ArticleWorker.perform_async(article.id)

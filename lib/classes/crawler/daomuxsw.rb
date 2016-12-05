@@ -30,8 +30,7 @@ class Crawler::Daomuxsw
             /(\d*)\.html/ =~ a_node[:href]
             next unless $1
             article.num = $1.to_i + novel.num
-            novel.num = novel.num + 1
-            novel.save
+            novel.update_column(:num,novel.num + 1)
             # puts node.text
             article.save
           end
