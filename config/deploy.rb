@@ -1,11 +1,8 @@
-# Change these
-server '139.162.61.14', roles: [:web, :app, :db], primary: true
-
 set :repo_url,        'https://github.com/StevenKo/novel_new'
 set :application,     'novel_new'
 set :user,            'deploy'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+set :puma_threads,    [3, 8]
+set :puma_workers,    1
 
 # Don't change these unless you know what you're doing
 set :pty,             true
