@@ -84,7 +84,7 @@ class NovelsController < ApplicationController
     novel.link = params[:link][:new_link]
     novel.num = params[:link][:num]
     novel.save
-    f = FromLink.find_or_initialize_by_novel_id(params[:id])
+    f = FromLink.find_or_initialize_by(novel_id: params[:id])
     f.link = params[:link][:from_link]
     f.save
 
