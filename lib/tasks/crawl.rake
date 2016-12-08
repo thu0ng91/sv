@@ -105,7 +105,7 @@ namespace :crawl do
   # end
 
   task :crawl_articles_and_update_novel => :environment do
-    Novel.where("is_show = true and is_serializing = true").select("id").find_in_batches do |novels|
+    Novel.where("is_show = true and is_serializing = true").select("id").order("id desc").find_in_batches do |novels|
       novels.each do |novel|
         CrawlWorker.perform_async(novel.id)
       end
